@@ -1,0 +1,45 @@
+{% load i18n %}
+
+<div class="panel panel-defaul list-ancestor" >
+<div class="panel-body text-center">
+
+{% include 'list_app/list-ancestor-menu.html' %}
+
+<p> <em> <b> <span class="glyphicon glyphicon-th"></span> Board </b> </em>
+{{board.name}}  
+
+<span class="badge">{{lists.count}}/{{total.count}}</span>
+<br>
+<span class="text-info"> {{board.description}} </span>
+
+</p>
+
+
+<a class="e-get" data-shell="#main-view"  href="#" data-show="{% url 'core_app:list-nodes' %}">
+<span class="glyphicon glyphicon-arrow-up"></span> Up
+</a>
+
+<a class="e-get" data-shell="#smallModalContent" href="#" data-show="{% url 'list_app:create-list' board.id %}" >
+<span class="glyphicon glyphicon-plus"></span> 
+{% trans "List" %}
+</a>
+
+<a class="e-get" data-shell="#smallModalContent" href="#" data-show="{% url 'list_app:setup-list-filter' board.id %}">
+{% if filter.status %}
+<span class="glyphicon glyphicon-filter"></span> 
+Filter
+{% else %}
+<strike> 
+<span class="glyphicon glyphicon-filter"></span> 
+Filter </strike>
+
+{% endif %}
+
+</a>
+
+</div>
+
+</div>
+
+
+

@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4> 
+<span class="glyphicon glyphicon-tag"></span>
+{{tag.name}}</h4>  
+</div>
+
+<div class="modal-body">
+Tagged by <span class="glyphicon glyphicon-user"></span>
+{{tagger.name}} <small> ({{tagger.email}})</small>
+
+ at {{created}}
+</div>
+
+<div class="modal-footer">
+<button  type="button" data-dismiss="modal" class="btn btn-default btn-sm"> 
+<span class="glyphicon glyphicon-thumbs-down"></span>
+     {% trans "Close" %}
+</button>
+</div>
+
+
+
+
+
+

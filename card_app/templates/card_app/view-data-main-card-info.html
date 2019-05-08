@@ -1,0 +1,67 @@
+{% load static %}
+
+<div class="panel panel-default">
+
+<div class="panel-body">
+<form id="cutCardForm" enctype="multipart/form-data"> {% csrf_token %} </form>
+<form id="copyCardForm" enctype="multipart/form-data"> {% csrf_token %} </form>
+
+<div class="pull-right">
+<a data-shell="#main-view" class="e-post text-warning" data-form="#cutCardForm"
+data-show="{% url 'card_app:cut-card' card.id %}" href="#">
+<span class="glyphicon glyphicon-scissors"></span> Cut</a>
+
+<a  data-shell="#main-view" class="e-post" data-show="{% url 'card_app:copy-card' card.id %}" data-form="#copyCardForm"
+href="#"><span class="glyphicon glyphicon-copy"></span> Copy</a>
+
+</div>
+
+<h5> {{card.label}}.. </h5>
+{{card.html | safe}}
+
+<span style="font-size:90%">
+<!-- Add a min-height so it doesnt get relayout -->
+<div id="card-attachments-{{card.id}}" style="min-height:52px;"> </div>
+
+<script> 
+/* It has to be async false otherwise it gets relayout when reloading the 
+the card details. */
+
+$.get({ 
+url: "{% url 'card_app:attach-file' card.id %}",
+async: true},
+
+function(data) {
+    $('#card-attachments-{{card.id}}').html(data);
+});
+</script>
+</span>
+
+<div class="pull-right"> <a href="#" class="text-warning e-get" data-show="{% url 'card_app:set-deadline' card.id %}" data-shell="#smallModalContent"> Set deadline? </a> </div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+
+});
+</script>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

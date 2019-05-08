@@ -1,0 +1,24 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+<a href="#" data-toggle="popover" data-trigger="hover" title="{{event.user.email}}"  data-content="{{event.user.description}}">
+<span class="glyphicon glyphicon-user"></span>
+
+{{event.user}} </a> has dettached file <span class="text-danger"> 
+<span class="glyphicon glyphicon-file"></span>
+
+{{event.filename}}</span>  from 
+
+<a class="e-get"
+data-shell="#bigModalContent" 
+data-show="{% url 'note_app:preview-note' event.note.id %}" 
+href="{{event.note.get_link_url}}"> 
+<span class="glyphicon glyphicon-book"></span> Note </a> 
+
+{% endblock %}
+
+
+
+
+

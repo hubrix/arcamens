@@ -1,0 +1,43 @@
+{% load i18n %}
+
+<div class="panel panel-default card-ancestor"  >
+<div class="panel-body text-center">
+{% include 'card_app/card-ancestor-menu.html' %}
+
+<p> <em> <b> <span class="glyphicon glyphicon-list-alt"></span> List </em> 
+{{list.ancestor.name}} <span class="glyphicon glyphicon-arrow-right"></span> {{list.name}}  </b>
+<span class="badge">{{count}}/{{total}}</span> <br>
+<span class="text-info"> {{list.description}} </span> </p>
+
+
+<!-- If the card has no ancestor then it is on clipboard -->
+
+<a class="e-get" href="#" data-shell="#main-view" data-show="{% url 'list_app:list-lists' board.id %}">
+<span class="glyphicon glyphicon-arrow-up"></span> Up
+</a>
+
+<a  data-shell="#bigModalContent" class="e-get"  href="#" data-show="{% url 'card_app:create-card' list.id %}">
+<span class="glyphicon glyphicon-plus"></span>  {% trans "Card" %}
+</a>
+
+<a class="e-get"  data-shell="#smallModalContent"   href="#" data-show="{% url 'card_app:setup-card-filter' list.id %}" >
+
+{% if filter.status %}
+<span class="glyphicon glyphicon-filter"></span> 
+Filter
+{% else %}
+<strike> 
+<span class="glyphicon glyphicon-filter"></span> 
+Filter </strike>
+
+{% endif %}
+
+</a>
+
+</div>
+
+</div>
+
+
+
+

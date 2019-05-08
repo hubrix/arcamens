@@ -1,0 +1,42 @@
+
+{% extends "list_app/create-list.html" %}
+{% load i18n %}
+{% block title %}
+<h5>
+<span class="glyphicon glyphicon-cog"></span>  Settings </h5>
+{% endblock %}
+
+
+{% block buttons %}
+<button  type="button" data-form="#listForm"  data-shell="#main-view" 
+data-shell-error="#smallModalContent"  data-show="{% url 'list_app:update-list' list.id %}"
+class="btn btn-sm btn-default e-post"> 
+<span class="glyphicon glyphicon-edit"></span> {% trans "Update" %}
+</button>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

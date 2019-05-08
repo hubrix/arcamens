@@ -1,0 +1,176 @@
+{% load i18n %}
+{% load static %}
+
+<div class="panel panel-default" >
+<div class="panel-heading clearfix" > 
+
+<div style="word-wrap: break-word;"> 
+<span class="glyphicon glyphicon-file"></span>
+
+{% if post.done %} (Done) {% endif %} Post by  <a href="#" data-toggle="popover" data-trigger="hover" title="{{post.owner.email}}"  data-content="{{post.owner.description}}">
+{{post.owner.name}} </a> 
+on group
+
+<a class="e-get" href="{{post.ancestor.get_link_url}}"
+data-show="{% url 'group_app:list-posts' post.ancestor.id %}"
+data-shell="#main-view" > 
+<span class="glyphicon glyphicon-eye-open"></span> {{post.ancestor.name}} </a>
+
+on <a href="{% url 'post_app:post-link' post.id %}" target="_blank"> {{post.created}} </a>
+<div class="pull-right">
+<a class=" e-get text-default"  href="#" data-shell="#pins"  data-show="{% url 'post_app:pin-post' post.id %}">
+<span class="glyphicon glyphicon-paperclip"></span> </a>
+</div>
+
+
+</div>
+
+
+</div>
+
+<div class="panel-body" >
+<div class="pull-right">
+<a class="e-post"  href="#" data-form="#copyPostForm"
+data-shell="#main-view" data-show="{% url 'post_app:copy-post' post.id %}">
+<span class="glyphicon glyphicon-copy"></span> Copy </a>
+
+<a class="text-warning e-post" href="#" data-form="#cutPostForm"
+data-shell="#main-view" data-show="{% url 'post_app:cut-post' post.id %}">
+<span class="glyphicon glyphicon-scissors"></span> Cut </a>
+</div>
+
+<div style="word-wrap: break-word;"> 
+
+<h5> {{post.label}} </h5>
+
+{{post.html|safe}}
+
+</div>
+
+{% for ind in post.comments.all %}
+<a data-show="{% url 'comment_app:comment' ind.id %}" class="e-get"  data-shell="#bigModalContent" href="{{ind.get_link_url}}"> 
+<span class="glyphicon glyphicon-comment"></span> {{ind.title}} 
+<small> ({{ind.owner.email|truncatechars:15}}) </small>
+</a>
+{% empty %}
+No comments...
+{% endfor %}
+
+<hr>
+<span style="font-size:80%">
+<!-- Add a min-height so it doesnt get relayout -->
+<div id="post-attachments-{{post.id}}" style="min-height:52px;"> </div>
+<script> 
+
+$.get({ 
+url: "{% url 'post_app:attach-file' post.id %}",
+async: true},
+
+function(data) {
+    $('#post-attachments-{{post.id}}').html(data);
+});
+
+</script>
+</span>
+
+<div class="row">
+
+<div class="col-md-3">
+<h5> <span class="glyphicon glyphicon-tag"></span> Tags </h5>
+<div class="pre-scrollable" style="font-size:90%">
+
+{% for ind in post.tags.all %}
+<a 
+data-show="{% url 'post_app:post-tag-information' ind.id post.id %}"
+data-shell="#smallModalContent" 
+class="e-get"
+href="#">
+<span class="glyphicon glyphicon-tag"></span>
+
+{{ind.name}}
+</a>
+
+{% empty %}
+No tags.
+{% endfor %} </div> </div>
+
+<div class="col-md-3"> <h5> <span class="glyphicon glyphicon-user"></span> Likes </h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in post.likes.all %}
+<a href="#" data-toggle="popover" data-trigger="hover" title="{{ind.email}}"  data-content="{{ind.description}}"> 
+<span class="glyphicon glyphicon-user"></span>
+{{ind.name}} </a>
+{% empty %}
+No likes.
+{% endfor %} </div></div>
+
+<div class="col-md-6">
+<h5> <span class="glyphicon glyphicon-random"></span> Forks </h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in post.card_forks.all %}
+<a href="{{ind.get_link_url}}" class="e-get" data-shell="#bigModalContent" data-show="{{ind.get_absolute_url}}" >
+<span class="glyphicon glyphicon-file"></span> {% if ind.done %} (Done) {% endif %} {{ind.label|truncatechars:80}} </a> 
+<br>
+{% empty %}
+No forks.
+{% endfor %}</div></div>
+
+
+</div> 
+
+</div>
+
+<div class="panel-footer">
+
+{% if post.in_likers %}
+<a href="#" data-shell="#post-{{post.id}}" data-show="{% url 'post_app:unlike-post' post.id %}" data-form="#likePostForm"
+class="e-post"><span class="glyphicon glyphicon-hand-right"> </span> Unlike </a>
+{% else %}
+<a href="#" data-shell="#post-{{post.id}}" data-show="{% url 'post_app:like-post' post.id %}" data-form="#likePostForm"
+class="e-post"><span class="glyphicon glyphicon-hand-right"> </span> Like </a>
+{% endif %}
+
+<a data-show="{% url 'post_app:update-post' post.id %}" data-shell="#bigModalContent"  href="#" class="e-get"> 
+<span class="glyphicon glyphicon-edit"></span> Update</a>
+
+<a class="e-get text-danger" data-shell="#smallModalContent" href="#" data-show="{% url 'post_app:confirm-post-deletion' post.id %}">
+<span class="glyphicon glyphicon-remove"></span> Delete  </a>
+
+{% if post.done %}
+<a href="#" data-shell="#post-{{post.id}}" data-show="{% url 'post_app:undo' post.id %}"
+class="text-warning  e-get"><span class="glyphicon glyphicon-ok"></span> Undo </a>
+
+{% else %}
+
+<a href="#" data-shell="#post-{{post.id}}" data-show="{% url 'post_app:done' post.id %}"
+class="text-warning e-get"><span class="glyphicon glyphicon-ok"></span> Done </a>
+{% endif %}
+
+<a  data-shell="#bigModalContent" class="e-get text-info" data-show="{% url 'comment_app:create-comment' post.id %}" 
+href="#"><span class="glyphicon glyphicon-plus"></span> Comment</a>
+
+<a href="#"
+data-shell="#smallModalContent" data-show="{% url 'post_app:unbind-post-tags' post.id %}"
+class="e-get"><span class="glyphicon glyphicon-tag"></span> Tags </a>
+
+<a class="e-get" href="#" data-shell="#smallModalContent"
+data-show="{% url 'post_app:select-fork-list' post.id %}">
+<span class="glyphicon glyphicon-random"></span> Fork </a>
+
+<a class="e-get" href="#" data-shell="#mediumModalContent" data-show="{% url 'post_app:post-events' post.id %}"> 
+<span class="glyphicon glyphicon-bell"></span> Activity</a>
+
+<div class="pull-right">
+<a  data-shell="#bigModalContent" class="e-get text-default"  href="#" data-show="{% url 'post_app:post-priority' post.id %}">
+<span class="glyphicon glyphicon-signal"></span> </a>
+</div>
+
+</div>
+</div>
+
+
+
+
+

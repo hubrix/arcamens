@@ -1,0 +1,39 @@
+{% load i18n %}
+
+<div class="panel panel-default board" >
+<div class="panel-body text-center">
+
+<div class="pull-right"> <a class=" e-get text-default"  href="#" 
+data-shell="#pins"  data-show="{% url 'board_app:pin-board' board.id %}">
+<span class="glyphicon glyphicon-paperclip"></span> </a> </div>
+
+
+<p> <a class="e-get" data-shell="#main-view"  data-show="{% url 'list_app:list-lists' board.id %}" href="{{board.get_link_url}}">
+<em ><span class="glyphicon glyphicon-th"></span> Board </em> {{board.name}} 
+<br>
+{{board.description}} 
+
+</a> 
+
+
+</p> 
+
+<small> <a href="#" data-toggle="popover" data-trigger="hover" title="{{board.owner.email}}"  data-content="{{board.owner.description}}">
+{{board.owner.name}} </a> on <a href="{{board.get_link_url}}" target="_blank"> {{board.created}} </small> </a>
+
+</div> 
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

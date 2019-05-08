@@ -1,0 +1,48 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button"  class="close" data-dismiss="modal">&times;</button>
+<h4> <span class="glyphicon glyphicon-cog"></span> {{organization.name}}'s Settings 
+<small> by {{organization.owner.name}} ({{organization.owner.email}})</h4>
+</div>
+
+<div class="modal-body">
+
+<form id="organizationForm" enctype="multipart/form-data">
+{% csrf_token %}
+
+{% bootstrap_field form.name  size='md' %}
+{% bootstrap_field form.description  size='md' %}
+{% bootstrap_field form.public  size='md' %}
+
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+
+{% if organization.public %}
+<hr>
+<h5> Public Link </h5>
+<p> {{link}} </p>
+
+<p class="text-info"> Users who click on this link
+will become contributors of this organization.</p>
+{% endif %}
+</div>
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+
+<button  type="button" data-show="{% url 'core_app:delete-organization' %}" class="btn btn-danger e-get">  
+<span class="glyphicon glyphicon-remove"></span> {% trans "Delete" %} </button>
+
+<button  type="button" data-form="#organizationForm" data-callback="location.reload()"  data-shell="" data-shell-error="#smallModalContent" 
+data-show="{% url 'core_app:update-organization' %}" class="btn btn-default e-post"> <span class="glyphicon glyphicon-edit"></span> {% trans "Update" %}
+</button>
+</div>
+
+</div>
+
+
+
+
+

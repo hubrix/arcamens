@@ -1,0 +1,21 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+{% load bname %}
+
+{% block content %}
+File <a href="{% url 'note_app:note-file-download' event.filewrapper.id %}" target="_blank"> {{event.filewrapper.file.name|bname}} </a>
+
+was attached to 
+
+<a class="e-get"
+data-shell="#bigModalContent" 
+data-show="{% url 'note_app:preview-note' event.note.id %}" 
+href="{{event.note.get_link_url}}"> 
+<span class="glyphicon glyphicon-book"></span> Note </a> 
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4> 
+<span class="glyphicon glyphicon-tag"></span>
+{{tag.name}}</h4>  
+</div>
+
+<div class="modal-body">
+Tagged by <span class="glyphicon glyphicon-user"></span>
+{{tagger.name}} <small> ({{tagger.email}})</small>
+
+ at {{created}}
+</div>
+
+<div class="modal-footer">
+<button  type="button" data-shell="#bigModalContent" 
+data-show="{% url 'card_app:view-data' card.id %}"
+class="btn btn-sm btn-default e-get"> <span class="glyphicon glyphicon-arrow-left"></span> {% trans "Back" %} </button>
+
+</div>
+
+
+
+
+
+
+

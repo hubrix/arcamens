@@ -1,0 +1,48 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load bname %}
+
+<script>
+$('#NoteFileWrapperForm-{{note.id}}').change(function(){
+   var formData = new FormData($('#NoteFileWrapperForm-{{note.id}}')[0]);
+
+   $.ajax({
+   url: "{% url 'note_app:attach-file' note.id  %}", 
+   type: 'POST',
+   success: function(data) {
+   $('#note-attachments-{{note.id}}').html(data);},
+   data: formData,
+   cache: false,
+   contentType: false,
+   processData: false});
+});
+
+</script>
+
+<form id="NoteFileWrapperForm-{{note.id}}" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_field form.file  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+
+{% for ind in attachments %}
+<a class="e-get text-danger" data-shell="#note-attachments-{{note.id}}" href="#"
+data-show="{% url 'note_app:detach-file' ind.id %}"> 
+<span class="glyphicon glyphicon-remove"></span></a> 
+
+<a href="{% url 'note_app:note-file-download' ind.id %}" target="_blank"> {{ind.file.name|bname}} </a>
+{% empty %}
+No attachments.
+{% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+

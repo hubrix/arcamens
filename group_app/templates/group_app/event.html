@@ -1,0 +1,18 @@
+{% load i18n %}
+<p>
+
+{% block content %}
+{% endblock %}
+</p>
+
+<small>
+<a href="#" data-toggle="popover" data-trigger="hover" title="{{event.user.email}}"  data-content="{{event.user.description}}">
+<span class="glyphicon glyphicon-user"></span> {{event.user}} </a> on {{event.created}}
+<a  href="#" data-show="{% url 'feedback_app:create-feedback' event.id %}"
+class="text-info e-get"><span class="glyphicon glyphicon-bell"></span> 
+Feedback? </a>
+
+</small>
+
+
+

@@ -1,0 +1,29 @@
+{% load i18n %}
+{% load bootstrap3 %}
+
+{% for ind in elems %}
+<div class="panel panel-default">
+<div class="panel-body">
+
+
+{{ind.html | safe}}
+
+<div class="pull-right">
+<a style="color:green;" class="e-get" data-shell="#mediumModalContent" data-show="{% url 'core_app:seen-event' ind.id %}" href="#">
+<span class="glyphicon glyphicon-ok"></span> Seen</a> </div>
+
+</div>
+</div>
+
+{% endfor %}
+<script>
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+</script>
+
+
+
+
+

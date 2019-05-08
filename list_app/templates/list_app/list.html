@@ -1,0 +1,48 @@
+{% load i18n %}
+
+<div class="panel panel-default list" >
+<div class="panel-body text-center">
+
+<div class="pull-right"> <a class=" e-get text-default"  href="#" 
+data-shell="#pins"  data-show="{% url 'list_app:pin-list' list.id %}">
+<span class="glyphicon glyphicon-paperclip"></span> </a> 
+</div>
+
+<div class="pull-left"> <a class=" e-get text-default"  href="#" 
+data-shell="#main-view" data-show="{% url 'list_app:copy-list' list.id %}">
+<span class="glyphicon glyphicon-copy"></span></a> 
+
+<a class=" e-get text-warning"  href="#" data-shell="#main-view" data-show="{% url 'list_app:cut-list' list.id %}">
+<span class="glyphicon glyphicon-scissors"></span> </a> 
+
+</div>
+
+<p> <a class="e-get" data-shell="#main-view" 
+data-show="{% url 'card_app:list-cards' list.id %}" href="{{list.get_link_url}}">
+<em ><span class="glyphicon glyphicon-list-alt"></span> List </em>{{list.name}} 
+
+<br>{{list.description}}</a>
+
+</p>
+
+<small> <a href="#" data-toggle="popover" data-trigger="hover" title="{{list.owner.email}}"  data-content="{{list.owner.description}}">
+{{list.owner.name}} </a> on <a href="{{list.get_link_url}}" target="_blank"> {{list.created}} </small> </a>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+

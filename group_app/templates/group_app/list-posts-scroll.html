@@ -1,0 +1,24 @@
+{% load i18n %}
+
+{% for ind in elems %}
+<div id="post-{{ind.id}}">
+        {% include 'post_app/post-data.html' with post=ind %}
+</div>
+{% endfor %}
+
+<script>
+$(document).ready(function() {
+    $('[data-toggle="popover"]').popover();
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+

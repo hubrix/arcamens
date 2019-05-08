@@ -1,0 +1,18 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+List <span style="color:red">
+<span class="glyphicon glyphicon-list-alt"></span>
+{{event.child_name}} </span> was deleted on board
+
+<a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'list_app:list-lists' event.ancestor.id %}" href="{{event.ancestor.get_link_url}}"> 
+<span class="glyphicon glyphicon-th"></span>
+{{event.ancestor.name}} </a>  by 
+
+{% endblock %}
+
+
+

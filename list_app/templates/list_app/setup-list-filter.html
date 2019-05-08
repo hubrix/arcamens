@@ -1,0 +1,31 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<form id="listFilterForm" enctype="multipart/form-data">
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h5>
+<span class="glyphicon glyphicon-filter"></span>
+{{board.name}}'s Filter</h5>
+</div>
+
+<div class="modal-body">
+{% csrf_token %}
+
+{% bootstrap_field form.pattern  size='md' %}
+
+{% bootstrap_field form.status  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+
+</div>
+</form>
+
+<div class="modal-footer">
+<button  type="button" data-form="#listFilterForm" data-shell="#main-view"  
+data-shell-error="#smallModalContent" data-show="{% url 'list_app:setup-list-filter' board.id  %}"
+class="btn btn-default btn-sm e-post"> <span class="glyphicon glyphicon-filter"></span>
+{% trans "Setup" %} </button>
+</div>
+
+

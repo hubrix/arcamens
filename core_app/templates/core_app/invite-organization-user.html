@@ -1,0 +1,47 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4>
+<span class="glyphicon glyphicon-send"></span>
+{{user.default.name}}'s invite </h4>
+</div>
+
+<div class="modal-body">
+<form id="inviteForm" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+{% bootstrap_form form %}
+
+</form>
+<small>
+<p class="text-info"> Staffs can add/remove organization users. </p>
+<p class="text-info"> Workers can't add/remove organization users.  </p>
+<p class="text-info"> Contributors can't create/delete groups/boards. </p>
+<p class="text-info"> Contributors are always costless. </p>
+
+</small>
+
+</div>
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+
+<button  type="button" data-show="{% url 'core_app:list-invites'  %}"
+class="btn btn-default e-get"> <span class="glyphicon glyphicon-arrow-left"></span>
+{% trans "Back" %} </button>
+
+<button  type="button" data-form="#inviteForm" data-show="{% url 'core_app:invite-organization-user'  %}"
+class="btn btn-default e-post"> <span class="glyphicon glyphicon-send"></span>
+{% trans "Send" %} </button>
+</div>
+
+</div>
+
+
+
+
+

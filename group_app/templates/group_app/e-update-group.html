@@ -1,0 +1,21 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+
+Group <a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'group_app:list-posts' event.group.id %}" href="{{event.group.get_link_url}}"> 
+<span class="glyphicon glyphicon-eye-open"></span>
+{{event.group.name}} </a> was updated 
+
+{% endblock %}
+
+
+
+
+
+
+
+
+

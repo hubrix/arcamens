@@ -1,0 +1,58 @@
+{% load i18n %}
+
+<ul class="nav nav-pills menu-group">
+
+<li>
+<a  href="#"> <b><span class="glyphicon glyphicon-eye-open"></span>  
+{{group.name|slice:":20"}}'s Posts <span class="badge">{{count}}/{{total}}</span></b> </a>
+</li>
+
+<li data-toggle="tooltip" title="Up">
+<a class="e-get" data-show="{% url 'core_app:list-nodes' %}"
+data-shell="#main-view" data-show="" href="#">
+<span class="glyphicon glyphicon glyphicon-arrow-up clip"></span> Up
+</a>
+</li>
+
+<li> <a class="e-get" data-shell="#bigModalContent" data-show="{% url 'post_app:create-post' group.id %}" href="#">
+<span class="glyphicon glyphicon-plus"></span> {% trans "Post" %}</a></li>
+
+<li><a class="e-get"  data-shell="#smallModalContent" data-show="{% url 'group_app:update-group' group.id %}" 
+href="#"> <span class="glyphicon glyphicon-cog"></span> 
+Settings</a></li>
+
+<li class="divider"></li>
+
+<li><a class="e-get" data-shell="#smallModalContent" data-show="{% url 'group_app:unbind-group-users' group.id %}" href="#">
+<span class="glyphicon glyphicon-user"></span>  {% trans "Members" %}</a></li>
+
+<li class="divider"></li>
+
+<li> <a class="e-get" data-shell="#smallModalContent" data-show="{% url 'post_app:setup-post-filter' group.id %}" href="#">
+{% if filter.status %}
+<span class="glyphicon glyphicon-filter"></span> 
+Filter
+{% else %}
+<strike> 
+<span class="glyphicon glyphicon-filter"></span> 
+Filter </strike>
+
+{% endif %}
+</a></li>
+
+<li><a class="e-get text-warning" data-shell="#mediumModalContent" 
+data-show="{% url 'group_app:select-destin-group' group.id %}" href="#">
+<span class="glyphicon glyphicon-paste"></span>  {% trans "Paste" %}</a></li>
+
+<li><a class="e-get text-warning" data-shell="#main-view" 
+data-show="{% url 'group_app:paste-all-posts' group.id %}" href="#">
+<span class="glyphicon glyphicon-paste"></span>  {% trans "Paste All" %}</a></li>
+
+<li><a class="e-get" data-shell="#smallModalContent" 
+data-show="{% url 'group_app:leave-group' group.id %}" 
+href="#"> <span class="glyphicon glyphicon-thumbs-down"></span> 
+{% trans "Leave?" %}</a></li>
+
+</ul>
+
+

@@ -1,0 +1,25 @@
+
+{% extends "note_app/create-note.html" %}
+{% load i18n %}
+{% block title %}
+<span class="glyphicon glyphicon-edit"></span> 
+Update card
+{% endblock %}
+
+{% block buttons %}
+<button  type="button" data-shell="#bigModalContent" 
+data-show="{% url 'note_app:list-notes' note.card.id %}"
+class="btn btn-default e-get"> {% trans "Back" %} </button>
+
+<button  type="button" 
+data-form="#noteForm"  data-shell="#bigModalContent" 
+data-shell-error="#bigModalContent"  data-show="{% url 'note_app:update-note' note.id %}"
+class="btn btn-default e-post"> 
+{% trans "Update" %}
+</button>
+
+{% endblock %}
+
+
+
+

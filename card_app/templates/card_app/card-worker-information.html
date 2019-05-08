@@ -1,0 +1,43 @@
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4> 
+<span class="glyphicon glyphicon-user"></span>
+{{peer.name}}</h4>  
+<h5> ({{peer.email}})</h5>
+</div>
+
+<div class="modal-body">
+<p>
+Binded by <span class="glyphicon glyphicon-user"></span>
+{{assigner.name}} <small> ({{assigner.email}})</small>
+
+on {{created}}
+</p>
+
+<p>
+<b> Active/Tasks: {{active_tasks}} </b>
+</p>
+
+<p>
+<b> Done/Tasks: {{done_tasks}} </b>
+</p>
+
+{% if not peer in card.ancestor.ancestor.members.all %}
+<p class="text-warning"> *Not in 
+<span class="glyphicon glyphicon-th"></span>
+{{card.ancestor.ancestor.name}}*  </p>
+{% endif %}
+
+<a data-show="{% url 'card_app:request-card-attention' peer.id card.id %}"
+class="e-get" href="#"> Request attention through e-mail? </a>
+</div>
+
+<div class="modal-footer">
+<button  type="button" data-shell="#bigModalContent" 
+data-show="{% url 'card_app:view-data' card.id %}"
+class="btn btn-sm btn-default e-get"> <span class="glyphicon glyphicon-arrow-left"></span> {% trans "Back" %} </button>
+
+</div>
+

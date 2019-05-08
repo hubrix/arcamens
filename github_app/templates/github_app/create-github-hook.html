@@ -1,0 +1,58 @@
+{% load bootstrap3 %}
+
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button"  class="close" data-dismiss="modal">&times;</button>
+<h5> <span class="glyphicon glyphicon-share-alt"></span>
+Github Webhook </h5>
+</div>
+
+<div class="modal-body">
+<p class="text-info">
+Insert your Github Project URL below.
+</p>
+
+<form id="githubhookForm" enctype="multipart/form-data">
+{% csrf_token %}
+
+{% bootstrap_field form.full_name  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+
+<p class="text-warning">
+It is necessary to add a Webhook for push events to your repository.
+</p>
+
+<b> Handle: </b> https://arcamens.com/github_app/github-handle/ 
+
+</div>
+
+<div class="modal-footer">
+<button  type="button" class="btn btn-default e-get"> {% trans "Back" %} </button>
+
+{% block buttons %}
+<button  type="button" data-form="#githubhookForm" data-show="{% url 'github_app:create-github-hook' %}"
+class="btn btn-default e-post">  {% trans "Create" %} </button>
+{% endblock %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

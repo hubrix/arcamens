@@ -1,0 +1,37 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<span class="glyphicon glyphicon-remove"></span> Delete card <span class="glyphicon glyphicon-file"></span> {{card.label|truncatechars:60}} ?
+</div>
+
+<div class="modal-body">
+<p class="text-danger"> The content will no longer be avaiable!</p>
+
+{% if card.children.exists %}
+<p class="text-warning"> It is gonna delete all card's forks, are you sure? </p>
+{% endif %}
+</div>
+
+
+<div class="modal-footer">
+<form id="deleteCardForm" enctype="multipart/form-data">
+{% csrf_token %}
+</form>
+
+<div class="btn-group btn-group-sm">
+
+<button  type="button" data-shell="#bigModalContent" 
+data-show="{% url 'card_app:view-data' card.id %}"
+class="btn btn-default e-get"> <span class="glyphicon glyphicon-arrow-left"></span> {% trans "Back" %} </button>
+
+<button type="button" 
+data-shell="#main-view" data-show="{% url 'card_app:delete-card' card.id %}" data-form="#deleteCardForm"
+class="btn btn-danger e-post"> 
+<span class="glyphicon glyphicon-remove"></span> {% trans "Delete" %}
+</button>
+</div>
+
+</div>

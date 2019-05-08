@@ -1,0 +1,91 @@
+<div class="panel panel-default">
+<div class="panel-body">
+
+<div class="row">
+
+
+<div class="col-md-3">
+<h5> <span class="glyphicon glyphicon-user"></span> Workers</h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in workers %}
+<a data-show="{% url 'card_app:card-worker-information' ind.id card.id %}" class="e-get" data-shell="#smallModalContent" href="#">
+<span class="glyphicon glyphicon-user"></span> {{ind.name}} </a> <br>
+
+{% if forloop.last %} 
+<a data-show="{% url 'card_app:alert-card-workers' card.id %}" 
+class="e-get text-warning" data-shell="#smallModalContent"  href="#"> <span class="glyphicon glyphicon-alert"></span> Alert workers?</a>
+{% endif %}
+{% empty %}
+No workers...
+{% endfor %}</div></div>
+
+<div class="col-md-3">
+<h5> <span class="glyphicon glyphicon-tag"></span> Tags</h5>
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in tags %}
+<a data-show="{% url 'card_app:card-tag-information' ind.id card.id %}" class="e-get" data-shell="#smallModalContent"  href="#">
+<span class="glyphicon glyphicon-tag"></span> {{ind.name}} </a>
+{% empty %}
+No tags...
+
+{% endfor %}</div></div>
+
+<div class="col-md-6">
+<h5> <span class="glyphicon glyphicon-link"></span> Related Cards </h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in relations %}
+<a href="{{ind.get_link_url}}" class="e-get" data-shell="#bigModalContent"  data-show="{% url 'card_app:view-data' ind.id %}" >
+<span class="glyphicon glyphicon-file"></span> {% if ind.done %} (Done) {% endif %} {{ind.label|truncatechars:70}} </a> 
+<br>
+{% empty %}
+No relations.
+{% endfor %}</div></div>
+
+</div>
+</div>
+</div>
+
+<div class="panel panel-default">
+<div class="panel-body">
+
+<div class="row">
+
+<div class="col-md-6">
+<h5> <span class="glyphicon glyphicon-random"></span> Forks/Cards  </h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in forks %}
+<a href="{{ind.get_link_url}}" class="e-get" data-shell="#bigModalContent" data-show="{{ind.get_absolute_url}}" >
+<span class="glyphicon glyphicon-file"></span> {% if ind.done %} (Done) {% endif %} {{ind.label|truncatechars:70}}
+</a> 
+<br>
+{% empty %}
+No forks.
+{% endfor %}</div></div>
+
+<div class="col-md-6">
+<h5> <span class="glyphicon glyphicon-arrow-up"></span> Parent Cards </h5>
+
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in path %}
+<a href="{{ind.get_link_url}}" class="e-get" data-shell="#bigModalContent" data-show="{{ind.get_absolute_url}}" >
+<span class="glyphicon glyphicon-file"></span> {% if ind.done %} (Done) {% endif %} {{ind.label|truncatechars:70}}
+</a> 
+<br>
+{% empty %}
+No parents.
+{% endfor %}</div></div>
+
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+

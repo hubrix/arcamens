@@ -1,0 +1,43 @@
+{% load i18n %}
+
+<div class="panel panel-default node-ancestor" >
+
+<div class="panel-body text-center">
+{% include 'core_app/node-ancestor-menu.html' %}
+
+<p><b>  <span class="glyphicon glyphicon-flag"></span> {{organization}} </b>
+<span class="badge">{{count}}/{{total}}</span> </p>
+
+
+<a class="e-get" 
+data-shell="#smallModalContent" href="#"
+data-show="{% url 'board_app:create-board' %}" >
+<span class="glyphicon glyphicon-plus"></span> 
+{% trans "Board" %}
+</a>
+
+<a class="e-get" 
+data-shell="#smallModalContent" href="#" 
+data-show="{% url 'core_app:setup-node-filter' %}">
+{% if filter.status %}
+<span class="glyphicon glyphicon-filter"></span> 
+Filter
+{% else %}
+<strike> 
+<span class="glyphicon glyphicon-filter"></span> 
+Filter </strike>
+
+{% endif %}
+
+</a>
+
+
+</div>
+
+</div>
+
+
+
+
+
+

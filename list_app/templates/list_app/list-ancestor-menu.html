@@ -1,0 +1,55 @@
+{% load i18n %}
+
+<div class="pull-right dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<span class="glyphicon glyphicon-wrench"></span>  </a>
+
+<ul class="dropdown-menu" role="menu">
+
+<li><a class="e-get"  
+data-shell="#smallModalContent" 
+data-show="{% url 'board_app:update-board' board.id %}" 
+href="#"> 
+<span class="glyphicon glyphicon-cog"></span> 
+{% trans "Settings" %}</a></li>
+
+
+<li class="divider"></li>
+
+<li><a class="e-get" 
+data-shell="#smallModalContent" 
+data-show="{% url 'board_app:unbind-board-members' board.id %}" 
+href="#"> <span class="glyphicon glyphicon-user"></span> 
+{% trans "Members" %}</a></li>
+<li class="divider"></li>
+
+<li><a class="e-get" data-shell="#mediumModalContent" 
+data-show="{% url 'board_app:select-destin-board' board.id %}" 
+href="#"> <span class="glyphicon glyphicon-paste"></span> 
+{% trans "Paste" %}</a></li>
+
+<li class="divider"></li>
+
+<li><a class="e-get" data-shell="#main-view" 
+data-show="{% url 'board_app:paste-all-lists' board.id %}" 
+href="#"> <span class="glyphicon glyphicon-paste"></span> 
+{% trans "Paste All" %}</a></li>
+<li class="divider"></li>
+
+<li><a class="e-get" data-shell="#smallModalContent" 
+data-show="{% url 'board_app:leave-board' board.id %}" 
+href="#"> <span class="glyphicon glyphicon-thumbs-down"></span> 
+{% trans "Leave?" %}</a></li>
+
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+

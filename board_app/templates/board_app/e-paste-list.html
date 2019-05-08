@@ -1,0 +1,28 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+Lists
+{% for ind in event.lists.all %}
+<a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'card_app:list-cards' ind.id %}" href="{{ind.get_link_url}}"> 
+<span class="glyphicon glyphicon-list-alt"></span>
+{{ind.name|truncatechars:40}}
+</a> 
+
+{% endfor %}
+ 
+
+were pasted on board
+
+<a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'list_app:list-lists' event.board.id %}" href="{{event.board.get_link_url}}"> 
+<span class="glyphicon glyphicon-th"></span>
+{{event.board.name}} </a> 
+
+{% endblock %}
+
+
+

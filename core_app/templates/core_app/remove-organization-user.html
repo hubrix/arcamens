@@ -1,0 +1,58 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h5> <span class="glyphicon glyphicon-remove text-danger"></span> Remove {{user.name}}? </h5>
+</div>
+
+<div class="modal-body">
+<p class="text-info"> 
+You will own the groups/boards:  </p>
+
+<p class="text-warning"> The user clipboard posts, lists and cards will be
+transfered to your clipboard. </p>
+
+<div class="pre-scrollable">
+{% for ind in groups %}
+<p> <span class="glyphicon glyphicon-eye-open"></span>  {{ind.name}} </p>
+{% empty %}
+<p> No groups...</p>
+{% endfor %}
+
+{% for ind in boards %}
+<p> <span class="glyphicon glyphicon-th"></span>  {{ind.name}} </p>
+{% empty %}
+<p> No boards...</p>
+{% endfor %}
+</div>
+
+<form id="actionReasonForm" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_field form.reason  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+</div>
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+
+<button type="button" class="btn btn-default" 
+data-dismiss="modal"> <span class="glyphicon glyphicon-thumbs-down"></span>
+Cancel</button>
+
+<button type="button" data-form="#actionReasonForm" 
+data-show="{% url 'core_app:remove-organization-user' user.id %}" class="btn btn-danger e-post"> 
+<span class="glyphicon glyphicon-remove"></span>
+     {% trans "Remove" %}
+</div>
+</button>
+
+
+
+
+
+
+
+

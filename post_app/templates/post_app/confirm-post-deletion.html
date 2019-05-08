@@ -1,0 +1,41 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<span class="glyphicon glyphicon-remove"></span> Delete post {{post.label|truncatechars:60}}?
+</div>
+
+<div class="modal-body">
+<p class="text-danger"> The content will no longer be avaiable!</p>
+
+{% if post.children.exists %}
+<p class="text-warning"> It is gonna delete all post's forks, are you sure? </p>
+{% endif %}
+</div>
+
+
+<div class="modal-footer">
+<form id="deletePostForm" enctype="multipart/form-data">
+{% csrf_token %}
+</form>
+<div class="btn-group btn-group-sm">
+
+<button type="button" class="btn btn-default" 
+data-dismiss="modal"><span class="glyphicon glyphicon-thumbs-down"></span> Cancel</button>
+
+<button  id="createpost" type="button" 
+data-shell="#main-view" data-show="{% url 'post_app:delete-post' post.id %}" data-form="#deletePostForm"
+class="btn btn-danger e-post"> 
+<span class="glyphicon glyphicon-remove"></span>     {% trans "Delete" %}
+</button>
+</div>
+
+<script>
+
+
+
+
+
+

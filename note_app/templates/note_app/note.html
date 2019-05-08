@@ -1,0 +1,69 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load static %}
+
+<div class="panel panel-default">
+<div class="panel-body">
+<form id="deleteNoteForm"> {% csrf_token %} </form>
+<p style="font-size:80%"> 
+<span class="glyphicon glyphicon-bell"></span> 
+
+By 
+<a href="#" data-toggle="popover" data-trigger="hover" title="{{note.owner.email}}"  data-content="{{note.owner.description}}"> {{note.owner.name}} </a>
+on <a href="{{note.get_link_url}}" target="_blank"> {{note.created}} </a>
+
+</p>
+
+<div style="word-wrap: break-word;"> 
+
+{{note.html | safe}}
+
+</div>
+
+<span  style="font-size:80%">
+<div id="note-attachments-{{note.id}}" style="min-height:50px;"> </div>
+
+<script> 
+$.get({ 
+url: "{% url 'note_app:attach-file' note.id %}",
+async: true},
+
+function(data) {
+    $('#note-attachments-{{note.id}}').html(data);
+});
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
+
+</script> 
+
+</span>
+
+<br>
+<a data-show="{% url 'note_app:note-events' note.id %}" href="#"
+data-shell="#mediumModalContent" class="e-get"> <span class="glyphicon glyphicon-bell"></span> 
+{% trans "Activity" %} </a>
+
+<a href="#"
+data-show="{% url 'note_app:update-note' note.id %}"
+data-shell="#bigModalContent" 
+class="text-warning e-get"> 
+<span class="glyphicon glyphicon-edit"></span> 
+{% trans "Update" %} </a>
+
+<a href="#" data-form="#deleteNoteForm" data-show="{% url 'note_app:delete-note' note.id %}" data-shell="#bigModalContent" class="text-danger e-post"> 
+<span class="glyphicon glyphicon-remove"></span> 
+
+{% trans "Remove" %} </a>
+
+</div>
+
+
+</div>
+
+
+
+
+
+

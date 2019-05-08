@@ -1,0 +1,43 @@
+{% load bootstrap3 %}
+{% load i18n %}
+{% load bname %}
+
+<script>
+$('#PostFileWrapperForm-{{post.id}}').change(function(){
+   var formData = new FormData($('#PostFileWrapperForm-{{post.id}}')[0]);
+   $.ajax({
+   url: '{% url 'post_app:attach-file' post.id  %}',
+   type: 'POST',
+   success: function(data) {
+   $('#post-attachments-{{post.id}}').html(data);},
+   data: formData,
+   cache: false,
+   contentType: false,
+   processData: false});
+});
+</script>
+
+<form id="PostFileWrapperForm-{{post.id}}" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_field form.file  size='md' %} 
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+
+{% for ind in attachments %}
+<a class="e-get text-danger" data-shell="#post-attachments-{{post.id}}"  href="#"
+data-show="{% url 'post_app:detach-file' ind.id %}"> 
+<span class="glyphicon glyphicon-remove"></span></a> 
+<a href="{% url 'post_app:post-file-download' ind.id %}" target="_blank"> {{ind.file.name|bname}} </a>
+
+{% empty %}
+No attachments.
+{% endfor %}
+
+
+
+
+
+
+
+
+

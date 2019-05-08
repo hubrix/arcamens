@@ -1,0 +1,59 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4> 
+
+<!-- Should open a page for attaching the user to new organizations -->
+<span class="glyphicon glyphicon-cog"></span>
+
+User Settings </h4>
+</div>
+
+<div class="modal-body">
+<form id="userForm" enctype="multipart/form-data" >
+{% csrf_token %}
+{% bootstrap_field form.name  size='md' %}
+{% bootstrap_field form.email  size='md' %}
+
+{% bootstrap_field form.description  size='md' %}
+{% bootstrap_field form.avatar  size='md' %}
+
+{% bootstrap_form_errors form type='non_fields' %}
+
+</form>
+
+
+</div>
+
+<div class="modal-footer">
+<div class="pull-left">
+<a href="#" data-show="{% url 'core_app:update-password'  %}" class="e-get"> 
+Set a new password?
+
+</a>
+</div>
+<br>
+
+<button  type="button" data-form="#userForm"  data-shell="" data-callback="window.location.replace('{% url 'core_app:index' %}');" 
+data-show="{% url 'core_app:update-user-information'  %}" class="btn btn-default btn-sm e-post"> 
+<span class="glyphicon glyphicon-edit"></span> {% trans "Update" %}
+</button>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

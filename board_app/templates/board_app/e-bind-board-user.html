@@ -1,0 +1,19 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+User <a href="#" data-toggle="popover" data-trigger="hover" title="{{event.peer.email}}"  data-content="{{event.user.description}}">
+<span class="glyphicon glyphicon-user"></span>
+{{event.peer.name}} </a> was binded to board
+
+<a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'list_app:list-lists' event.board.id %}" href="{{event.board.get_link_url}}"> 
+<span class="glyphicon glyphicon-th"></span> {{event.board.name}} </a>  
+
+<p> <b> Status: </b> {{event.get_status_display}} </p>
+{% endblock %}
+
+
+
+

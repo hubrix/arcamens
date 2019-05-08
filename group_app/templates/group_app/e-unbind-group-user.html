@@ -1,0 +1,30 @@
+{% extends 'group_app/event.html' %}
+{% load i18n %}
+
+{% block content %}
+
+Unser <a href="#" data-toggle="popover" data-trigger="hover" title="{{event.peer.email}}"  data-content="{{event.user.description}}">
+<span style="color:red"> 
+<span class="glyphicon glyphicon-user"></span>
+
+{{event.peer.name}} </span> </a> was unbinded from
+
+<a class="e-get"
+data-shell="#main-view"
+data-show="{% url 'group_app:list-posts' event.group.id %}" href="{{event.group.get_link_url}}"> 
+<span class="glyphicon glyphicon-eye-open"></span> {{event.group.name}} </a>  
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+

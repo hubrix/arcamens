@@ -1,0 +1,78 @@
+{% load i18n %}
+
+<div id="pins">
+<ul class="nav nav-pills" id="pinned-cards" style="font-size:80%">
+
+
+<li><a class="e-get disabled" style="color:black; pointer-events: none;" href="#">
+<span class="glyphicon glyphicon-paperclip"></span> Pins:</a></li>
+
+{% for ind in boardpins %}
+<li> <a class="e-get pin-board" data-shell="#main-view"
+data-show="{{ ind.get_absolute_url }}" href="#"> <span class="glyphicon glyphicon-th"></span>  {{ind.board.name|truncatechars:20}}
+<span  onclick="$('#pins').load('{% url 'board_app:unpin' ind.id %}');event.stopPropagation();" class="close">
+&times; </span> </a>
+</li>
+
+{% endfor %}
+
+{% for ind in listpins %}
+<li > <a class="e-get pin-list" data-shell="#main-view"
+data-show="{{ ind.get_absolute_url }}" href="#"> <span class="glyphicon glyphicon-list-alt"> </span>
+{{ind.list.ancestor.name|truncatechars:15}} <span class="glyphicon glyphicon-arrow-right"></span> {{ind.list.name|truncatechars:15}}
+<span class="close" onclick="$('#pins').load('{% url 'list_app:unpin' ind.id %}');event.stopPropagation();">&times;</span> </a>
+</li>
+
+{% endfor %}
+
+{% for ind in cardpins %}
+<li> <a class="e-get pin-card"  data-shell="#bigModalContent" data-show="{{ ind.get_absolute_url }}" href="#">
+<span class="glyphicon glyphicon-file"></span> {{ind.card.label|truncatechars:20}}
+
+<span class="close" onclick="$('#pins').load('{% url 'card_app:unpin' ind.id %}');event.stopPropagation();">&times;</span> </a>
+</li>
+{% endfor %}
+
+{% for ind in grouppins %}
+<li>
+<a class="e-get pin-group"  data-shell="#main-view"
+data-show="{{ ind.get_absolute_url }}" href="#"> <span class="glyphicon glyphicon-eye-open"></span>  {{ind.group.name}}
+<span  onclick="$('#pins').load('{% url 'group_app:unpin' ind.id %}');event.stopPropagation();" class="close">
+&times;
+</span> </a>
+</li>
+{% endfor %}
+
+{% for ind in postpins %}
+<li>
+<a class="e-get pin-post"  data-shell="#main-view"
+data-show="{{ ind.get_absolute_url }}" href="#"> <span class="glyphicon glyphicon-file"></span>  {{ind.post.label|truncatechars:20}}
+<span  onclick="$('#pins').load('{% url 'post_app:unpin' ind.id %}');event.stopPropagation();" class="close">
+&times;
+</span> </a>
+</li>
+{% endfor %}
+
+</ul>
+
+</div>
+
+<!--
+// <script>
+// $( function() {
+// $( "#pinned-cards" ).sortable({
+    // helper: "clone",
+    // axis:'x'});
+// });
+// </script>
+-->
+
+
+
+
+
+
+
+
+
+

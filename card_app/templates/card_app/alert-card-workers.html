@@ -1,0 +1,34 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+<h5> 
+<span class="glyphicon glyphicon-envelope"></span>
+Alert workers on card <span class="glyphicon glyphicon-file"></span> {{card.label|truncatechars:60}} </h5>
+</div>
+
+<div class="modal-body">
+<form id="alertCardWorkersForm" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_field form.message  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+</div>
+
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+
+<button  type="button" data-shell="#bigModalContent" 
+data-show="{% url 'card_app:view-data' card.id %}"
+class="btn btn-default e-get"> <span class="glyphicon glyphicon-arrow-left"></span> {% trans "Back" %} </button>
+
+<button  type="button" data-form="#alertCardWorkersForm" data-show="{% url 'card_app:alert-card-workers' card.id  %}"
+class="btn btn-default e-post"> <span class="glyphicon glyphicon-send"></span> {% trans "Send e-mail" %} </button>
+</div>
+
+</div>
+
+

@@ -1,0 +1,67 @@
+{% load bootstrap3 %}
+{% load i18n %}
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4> <span class="glyphicon glyphicon-credit-card"></span> Payment Settings </h4>
+
+</div>
+<div class="modal-body">
+<h4> Account Details </h4>
+<p class="text-info"> Your account contains {{c_admins}} admins, {{c_members}} members, {{c_contributors}} contributors.
+</p>
+
+<p class="text-info">
+{% if me.enabled %}
+    {% if me.paid %}
+        It will never expire.
+    {% else %}
+        It will expire on {{ me.expiration }}.
+    {% endif %}
+{% else %}
+Your account was expired on {{ me.expiration }}.
+{% endif %}
+</p>
+
+<h4> Purchases: </h4>
+<div class="pre-scrollable" style="font-size:90%">
+{% for ind in items %}
+<p> 
+Max Users: {{ind.period.max_users}} 
+<br>
+Total: {{ind.period.total}} {{CURRENCY_CODE}}
+<br>
+Expiration: {{ind.period.expiration}}
+<br>
+Type: {% if ind.period.paid %} Plan Paid {% else %}  Plan Free {% endif %}
+<br>
+Date: {{ind.period.created}}
+<br>
+
+{% if ind.payment_process.success %}
+<small class="text-success"> Paid successfully! </small>
+{% endif %}
+<p>
+{% empty %}
+<p> No items. </p>
+{% endfor %}
+
+</div>
+
+</div>
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+<button type="button" class="btn btn-default e-get" data-show="{% url 'cash_app:paypal-manual-payment' %}" href="#"> Paypal </button> 
+<button type="button"class="btn btn-default e-get" data-show="{% url 'cash_app:custom-payment' %}" href="#"> Custom </button> 
+
+{% if me.paid %}
+<button type="button" class="btn btn-default e-get" data-show="{% url 'cash_app:confirm-downgrade-free' %}" href="#"> Downgrade Free </button> 
+{% endif %}
+</div>
+
+</div>
+
+
+
+

@@ -1,0 +1,66 @@
+{% load i18n %}
+{% load listutils %}
+
+{% load bootstrap3 %}
+{% load i18n %}
+
+
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h4>  
+<span class="glyphicon glyphicon-search"></span>
+{{organization.name}}'s Tags <span class="badge">{{count}}/{{total}}</span></h4>
+</div>
+
+<div class="modal-body">
+
+<div class="pre-scrollable">
+{% for ind in tags %}
+<p> <a class="r-post" style="color:red" data-form="#tagSearchForm"
+data-show="{% url 'core_app:delete-tag' ind.id %}" href="#"> 
+<span class="glyphicon glyphicon-remove"></span> </a>
+
+<b> {{ind.name}} </b> {{ind.description}} </p>
+{% empty %}
+No tags.
+{% endfor %}
+
+</div>
+
+<br>
+<form id="tagSearchForm" enctype="multipart/form-data">
+{% csrf_token %}
+{% bootstrap_field form.pattern  size='md' %}
+{% bootstrap_form_errors form type='non_fields' %}
+</form>
+<a class="e-get" data-show="{% url 'core_app:create-tag' %}" data-shell="#smallModalContent"
+href="#"> <span class="glyphicon glyphicon-tag"></span> New tag?</a> 
+
+</div>
+
+
+
+<div class="modal-footer">
+<div class="btn-group btn-group-sm">
+
+<button  type="button" data-form="#tagSearchForm" 
+data-show="{% url 'core_app:list-tags'  %}" class="btn btn-default e-post"> 
+<span class="glyphicon glyphicon-search"></span>
+
+{% trans "Search" %} </button>
+
+<button  type="button" data-dismiss="modal" class="btn btn-default"> 
+<span class="glyphicon glyphicon-thumbs-down"></span>
+     {% trans "Close" %}
+</button>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
