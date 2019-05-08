@@ -42,5 +42,9 @@ I'm not sure if he is going to keep a fork of arcamens or just join me in the ac
 
 Victor Porton demonstrated at some point to have some set of ethical and moral assertions whose
 acceptance by me was of hard effort. Such divergencies in naturity made me take the decision to open
-source arcamens it was also necessary in order to warrant the authorship of arcamens. 
+source arcamens it was also necessary in order to warrant the authorship of arcamens.  
+
+I hope he apologizes for his bad behavior soon so we can both get back our dialogues about my ideas
+regarding arcamens and mindmip :)
+
 
