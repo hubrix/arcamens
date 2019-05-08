@@ -1,63 +1,37 @@
-# README #
+# Intro
 
-# Development standards
+Arcamens is a project management platform with a total new perspective of boards. It implement the so called
+kanban boards and also groups. Groups can be used as super backlogs in scrum methodology as well as a lot of
+other interesting possibilities.
 
-#### Template names
+# Install
 
-Template names should be named as follow:
+# Setup
 
-~~~
-view-name.html
-~~~
+# Goals
 
-Templates which are included in a given view should be named as:
+# History/Contributors
 
-~~~
-view-name-template-name.html
-~~~
+I have designed and implemented 90% of arcamens. Victor Porton https://github.com/vporton 
+has designed the payment module in its first version. After a discussion we had agreed to switch to
+a fork of mine aka django-paybills. 
 
-In this way, it is easy to know where the template is rendered
-and if it is included then where it is included.
+which now turns to be useless. He also has helped me with dialoging
+about features, advices also automated/manual tests. 
 
-Templates which are included in more than one template
-should follow:
+I would like to thank Victor Porton who has supported this project during one year 
+financially when i ran out of money and became jobless. 
 
-~~~
-utils-template-name.html
-~~~
+This project only was possible due to Victor Porton financial and specification help.
 
-#### Form names
+The reasons behind arcamens being open sourced are Victor Porton mental stability altogether with 
+his set of ethical and moral rules. It influenced a lot my actual financial scenary as well.
+financial scenary.
 
-Forms which are inherited from ModelForm should be named as follow:
-
-ModelNameForm
-
-When there are more than two forms that are used
-in different views:
-
-~~~python
-class ViewNameModelNameForm(forms.ModelForm):
-~~~
-
-#### View type/names
-
-It should be used just generic views.
-
-~~~python
-from django.views.generic import View
-~~~
-
-Views that change state of models should be named as follow:
-
-~~~python
-class ActionModelName
-~~~
-
-#### Url names
+Victor actually possesses the domain which i have conceived some years ago www.arcamens.com. 
+I'm not sure if he is going to keep a fork of arcamens or just join me in the actual approach.
 
 
-#### Models
 
-**Mixins**
 
 
