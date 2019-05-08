@@ -8,15 +8,16 @@ django-recaptcha==2.0.2
 requests
 django-blowdb
 django-listutils
-git+ssh://git@gitlab.com/arcamens/django-paybills.git@v2.0.0
-git+ssh://git@gitlab.com/arcamens/django-slock.git@v2.0.0
-git+ssh://git@gitlab.com/arcamens/django-jsim.git@v2.0.0
+git+ssh://git@github.com/arcamens/django-paybills.git
+git+ssh://git@github.com/arcamens/django-slock.git
+git+ssh://git@github.com/arcamens/django-jsim.git
 pygments
-git+ssh://git@gitlab.com/arcamens/django-sqlike.git@v2.0.0
-git+ssh://git@gitlab.com/arcamens/django-onesignal.git@v2.0.0
-git+ssh://git@gitlab.com/arcamens/django-jscroll.git@v2.0.0
+git+ssh://git@github.com/arcamens/django-sqlike.git
+git+ssh://git@github.com/arcamens/django-onesignal.git
+git+ssh://git@github.com/arcamens/django-jscroll.git
 django-storages
 boto3
+
 
 
 
