@@ -1,6 +1,6 @@
 # Intro
 
-Arcamens is a project management platform with a total new perspective of boards. It implement the so called
+Arcamens is a project management platform with a total new perspective of boards. It implements the so called
 kanban boards and also groups. Groups can be used as super backlogs in scrum methodology as well as a lot of
 other interesting possibilities.
 
