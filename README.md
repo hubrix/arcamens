@@ -30,6 +30,17 @@ other interesting possibilities.
 
 https://github.com/arcamens/arcamens/wiki
 
+# Goal
+
+* Find investitors to keep this project on. I'm about to be homeless due to trusting
+people with low character. 
+
+* Get it all on django-restframework and vuejs
+
+* Assure people will not have information stolen by Victor Porton http://portonvictor.org/ who has stolen me
+https://arcamens.com you can see arcamens there. Victor is a false christian also a fake evangelic person. 
+He uses the name of christ in vain regarding the purposes of christ. 
+
 # History/Contributors
 
 I have designed and implemented 90% of arcamens. Victor Porton https://github.com/vporton 
@@ -39,7 +50,9 @@ a fork of mine aka django-paybills which is of much better design and stability.
 He also has helped me with discussing features, advices also some tests.
 
 I would like to thank Victor Porton who has supported this project during one year 
-financially when i ran out of money and became jobless under the promise of earning 50% of arcamens profit. 
+financially when i ran out of money and became jobless under the promise of earning 50% of arcamens profit..
+He has done it on the purpose to attempt to steal my 50% and my old domain arcamens.com which he has transfered from my godaddy
+account when i trusted him to manage it.
 
 This project only was possible due to Victor Porton financial and some specification discussion on
 some features, the features were all proposed by me, Victor Porton had participation just in the criticism of such
@@ -76,5 +89,9 @@ for gitlab services then he started to own arcamens repositories on gitlab.
 This is the old repository of arcamens at bitbucket. Everyone can see my commits there.
 
 https://bitbucket.org/arcamens/
+
+This project was probably entirely developed using https://github.com/vyapp/vy :)
+
+
 
 
